@@ -50,7 +50,7 @@ vector<string> Gradebook::report() {
 			place_holder += "\n\t";
 			place_holder += class_assignment[j].get_assignment_name();
 			place_holder += ": ";
-			place_holder += student_list[i].get_grade(class_assignment[j].get_assignment_name());
+			place_holder += to_string(student_list[i].get_grade(class_assignment[j].get_assignment_name()));
 		}
 		temp.push_back(place_holder);
 		place_holder = "";
