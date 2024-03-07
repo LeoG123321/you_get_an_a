@@ -30,3 +30,11 @@ void Student::grade_assignment(string assignment_name, int points) {
 		}
 	}
 }
+
+int Student::get_grade(string assignment_name) {
+	for (int i = 0; i != student_assignment.size(); i++) {
+		if (student_assignment[i].get_assignment_name() == assignment_name) {
+			return student_assignment[i].get_points();
+		}
+	}
+}
