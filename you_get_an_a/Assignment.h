@@ -11,6 +11,6 @@ public:
 
 	string get_assignment_name();	
 	int get_points();				
-	int set_points(int);
+	void set_points(int);
 };
 
