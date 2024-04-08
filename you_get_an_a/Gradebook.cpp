@@ -40,6 +40,9 @@ void Gradebook::grade_assignment(string student_id, string assignment_name, int 
 vector<string> Gradebook::report() {
 	vector<string> temp;
 	string place_holder = "";
+	double total_points_earned = 0;
+	double total_points_possible = 0;
+	double average;
 	for (int i = 0; i < student_list.size(); i++) {
 		place_holder += student_list[i].get_first_name();
 		place_holder += " ";
@@ -50,10 +53,24 @@ vector<string> Gradebook::report() {
 			place_holder += "\n\t";
 			place_holder += class_assignment[j].get_assignment_name();
 			place_holder += ": ";
-			place_holder += to_string(student_list[i].get_grade(class_assignment[j].get_assignment_name()));
+			if (student_list[i].get_grade(class_assignment[j].get_assignment_name()) == -1) {
+				place_holder += "N/A";
+			}
+			else {
+				place_holder += to_string(student_list[i].get_grade(class_assignment[j].get_assignment_name()));
+				total_points_earned += student_list[i].get_grade(class_assignment[j].get_assignment_name());
+				total_points_possible += class_assignment[j].get_points();
+			}
 		}
+		average = total_points_earned / total_points_possible;
+		average *= 100;
+		place_holder += "\nAverage Score: ";
+		place_holder += to_string(average);
 		temp.push_back(place_holder);
 		place_holder = "";
+
+		total_points_earned = 0;
+		total_points_possible = 0;
 	}
 	return temp;
 }

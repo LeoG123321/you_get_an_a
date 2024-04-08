@@ -19,7 +19,7 @@ string Student::get_student_id() {
 }
 
 void Student::create_assignment(string assignment_name) {
-	Assignment place_holder(assignment_name, 0);
+	Assignment place_holder(assignment_name, -1);
 	student_assignment.push_back(place_holder);
 }
 
@@ -37,4 +37,5 @@ int Student::get_grade(string assignment_name) {
 			return student_assignment[i].get_points();
 		}
 	}
+	return -1;
 }
