@@ -1,5 +1,6 @@
 #include "Gradebook.h"
 
+
 Gradebook::Gradebook() {
 	return;
 }
@@ -72,5 +73,54 @@ vector<string> Gradebook::report() {
 		total_points_earned = 0;
 		total_points_possible = 0;
 	}
+	return temp;
+}
+
+vector<string> Gradebook::assignment_report(string assignment_name) {
+	vector<string> temp;
+	string place_holder = "";
+	double total_points_earned = 0;
+	double total_assignments = 0;
+	double average;
+
+	int class_assignment_index = 0;
+
+	for (int i = 0; i < class_assignment.size(); i++) {
+		if (class_assignment[i].get_assignment_name() == assignment_name) {
+			class_assignment_index = i;
+		}
+	}
+
+	for (int i = 0; i < student_list.size(); i++) {
+		place_holder += student_list[i].get_first_name();
+		place_holder += " ";
+		place_holder += student_list[i].get_last_name();
+		place_holder += ": ";
+		place_holder += student_list[i].get_student_id();
+		
+		place_holder += "\n\t";
+		place_holder += "Score: ";
+		if (student_list[i].get_grade(assignment_name) == -1) {
+			place_holder += "N/A";
+		}
+		else {
+			place_holder += to_string(student_list[i].get_grade(assignment_name));
+			total_points_earned += student_list[i].get_grade(assignment_name);
+			total_assignments++;
+		}
+		
+		temp.push_back(place_holder);
+		place_holder = "";
+	}
+
+	average = total_points_earned / total_assignments;
+
+	place_holder += "\nAverage Score: ";
+	place_holder += to_string(average);
+	place_holder += " / ";
+	place_holder += to_string(class_assignment[class_assignment_index].get_points());
+
+	temp.push_back(place_holder);
+
 	return temp;
 }

@@ -13,5 +13,7 @@ public:
 	void grade_assignment(string, string, string, int);	//grades the assignments of students by finding the student with their name and finding the assignment by the name of the assignment
 	void grade_assignment(string, string, int);	//grades the assignments of students by finding the student with their id and finding the assignment by the name of the assignment
 	vector<string> report();
+
+	vector<string> assignment_report(string assignment_name);
 };
 

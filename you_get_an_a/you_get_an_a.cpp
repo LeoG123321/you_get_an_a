@@ -26,10 +26,25 @@ int main()
     gradebook.grade_assignment("HIJ789", "Quiz 1", 93);
     gradebook.grade_assignment("ABC123", "Lab 1", 0);
 
+
+    cout << "Report: " << endl << endl;
     vector<string> report = gradebook.report();
     for (int i = 0; i < report.size(); i++) {
         cout << report[i] << "\n" << endl;
     }
+
+    cout << "\n\nAssignment Report:" << endl << endl;
+    vector<string> assignment_report = gradebook.assignment_report("Lab 1");
+    for (int i = 0; i < assignment_report.size(); i++) {
+        cout << assignment_report[i] << "\n" << endl;
+    }
+
+    cout << "\n\nAssignment Report:" << endl << endl;
+    vector<string> assignment_report_2 = gradebook.assignment_report("Quiz 1");
+    for (int i = 0; i < assignment_report_2.size(); i++) {
+        cout << assignment_report_2[i] << "\n" << endl;
+    }
+
 
     return 0;
 }
